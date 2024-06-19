@@ -4,8 +4,8 @@ public class Cloner : MonoBehaviour
 {
     [SerializeField] private Exploder _exploder;
     [SerializeField] private GameObject _originaleCube;
+    [SerializeField] private int _chanceOfCloning = 100;
 
-    private int _percentOfCloning = 100;
     private int _cubesCountMax = 6;
     private int _cubesCountMin = 2;
     private int _cubesCount;
@@ -21,7 +21,7 @@ public class Cloner : MonoBehaviour
     {
         int chanceOfCloning = Random.Range(0, 101);
 
-        if (chanceOfCloning <= _percentOfCloning)
+        if (chanceOfCloning <= _chanceOfCloning)
         {
             _cubesCount = Random.Range(_cubesCountMin, _cubesCountMax);
             _originaleCube.transform.localScale /= _scaleReducePercent;
@@ -29,7 +29,7 @@ public class Cloner : MonoBehaviour
             for (int i = 0; i < _cubesCount; i++)
             {
                 _originaleCube.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-                _percentOfCloning /= _chanceReductionPercentage;
+                _chanceOfCloning /= _chanceReductionPercentage;
                 Instantiate(_originaleCube, transform.position, transform.rotation);
             }
         }
