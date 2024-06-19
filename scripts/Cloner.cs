@@ -25,13 +25,14 @@ public class Cloner : MonoBehaviour
         {
             _cubesCount = Random.Range(_cubesCountMin, _cubesCountMax);
             _originaleCube.transform.localScale /= _scaleReducePercent;
+            _chanceOfCloning /= _chanceReductionPercentage;
 
             for (int i = 0; i < _cubesCount; i++)
             {
                 _originaleCube.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-                _chanceOfCloning /= _chanceReductionPercentage;
                 Instantiate(_originaleCube, transform.position, transform.rotation);
             }
+
         }
 
     }
