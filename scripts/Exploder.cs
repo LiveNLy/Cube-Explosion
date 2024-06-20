@@ -7,7 +7,7 @@ public class Exploder : MonoBehaviour
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
     [SerializeField] private GameObject _cube;
-    [SerializeField] private Cloner _cloner;
+    [SerializeField] private Controler _controler;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class Exploder : MonoBehaviour
 
     private void OnEnable()
     {
-        _cloner.Exploding += Explode;
+        _controler.Exploding += Explode;
     }
 
     private void Explode()
