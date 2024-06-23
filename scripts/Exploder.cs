@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Cube))]
 public class Exploder : MonoBehaviour
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
-    [SerializeField] private GameObject _cube;
-    [SerializeField] private Controler _controler;
+    [SerializeField] private Divider _controler;
+
+    private Cube _cube;
 
     private void Start()
     {
+        _cube = GetComponent<Cube>();
         _explosionForce /= _cube.transform.localScale.x;
         _explosionRadius /= _cube.transform.localScale.x;
     }
@@ -25,7 +28,7 @@ public class Exploder : MonoBehaviour
         foreach (Rigidbody explodableObject in GetExplodableObjects())
             explodableObject.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
 
-        Destroy(_cube);
+        Destroy(gameObject);
     }
 
     private List<Rigidbody> GetExplodableObjects()

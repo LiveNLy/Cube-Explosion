@@ -1,18 +1,21 @@
 using System;
 using UnityEngine;
 
-public class Controler : MonoBehaviour
+[RequireComponent(typeof(Cube))]
+public class Divider : MonoBehaviour
 {
     [SerializeField] private int _chanceOfCopy = 100;
 
+    private Cube _cube;
     private int _chanceReductionPercentage = 2;
 
     public event Action Exploding;
     public event Action Spawning;
 
-    private void OnMouseUpAsButton()
+    private void OnEnable()
     {
-        Clone();
+        _cube = GetComponent<Cube>();
+        _cube.ChangingState += Clone;
     }
 
     private void Clone()
