@@ -1,20 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer), typeof(Cube))]
+[RequireComponent(typeof(Renderer))]
 public class CollorChanger : MonoBehaviour
 {
-    [SerializeField] private Spawner _spawner;
-
-     private Cube _cube;
-
-    private void OnEnable()
+    public void ChangeCollor(Cube cube)
     {
-        _cube = GetComponent<Cube>();
-        _spawner.ParameterChanging += ChangeParameters;
-    }
-
-    private void ChangeParameters()
-    {
-        _cube.GetComponent<Renderer>().material.color = Random.ColorHSV();
+        cube.GetComponent<Renderer>().material.color = Random.ColorHSV();
     }
 }
